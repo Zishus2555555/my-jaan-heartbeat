@@ -3,11 +3,17 @@ import { HeartIcon } from "@/components/HeartIcon";
 import { FloatingHearts } from "@/components/FloatingHearts";
 import { LoveQuotes } from "@/components/LoveQuotes";
 import { PhotoGallery } from "@/components/PhotoGallery";
+import { PasswordScreen } from "@/components/PasswordScreen";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 
 const Index = () => {
   const [isGalleryOpen, setIsGalleryOpen] = useState(false);
+  const [isUnlocked, setIsUnlocked] = useState(false);
+
+  if (!isUnlocked) {
+    return <PasswordScreen onPasswordCorrect={() => setIsUnlocked(true)} />;
+  }
   return (
     <div className="min-h-screen soft-gradient relative overflow-hidden">
       <FloatingHearts />
@@ -25,18 +31,29 @@ const Index = () => {
             </p>
             <div className="flex flex-wrap justify-center gap-4 mb-8">
               <HeartIcon className="text-2xl text-love-red" animated />
-              <span className="font-romantic text-lg text-deep-rose">My Life</span>
+              <span className="font-romantic text-lg text-deep-rose">My Qalbi</span>
               <HeartIcon className="text-2xl text-love-red" animated />
-              <span className="font-romantic text-lg text-deep-rose">My Soul</span>
+              <span className="font-romantic text-lg text-deep-rose">Meri Duniya</span>
               <HeartIcon className="text-2xl text-love-red" animated />
-              <span className="font-romantic text-lg text-deep-rose">My Everything</span>
+              <span className="font-romantic text-lg text-deep-rose">Meri Rooh</span>
+              <HeartIcon className="text-2xl text-love-red" animated />
+            </div>
+            <div className="flex flex-wrap justify-center gap-4 mb-8">
+              <HeartIcon className="text-2xl text-love-red" animated />
+              <span className="font-romantic text-lg text-deep-rose">Meri Bachhi</span>
+              <HeartIcon className="text-2xl text-love-red" animated />
+              <span className="font-romantic text-lg text-deep-rose">Meri Jaan</span>
+              <HeartIcon className="text-2xl text-love-red" animated />
+              <span className="font-romantic text-lg text-deep-rose">Meri Sukoon</span>
+              <HeartIcon className="text-2xl text-love-red" animated />
+              <span className="font-romantic text-lg text-deep-rose">Meri Paglet</span>
               <HeartIcon className="text-2xl text-love-red" animated />
             </div>
           </div>
 
           <Card className="p-8 romantic-gradient text-white mb-8 love-pulse">
             <p className="text-lg md:text-xl font-elegant leading-relaxed">
-              "To my dearest wife, my jaan, the beat of my heart and the light of my life. 
+              "To my dearest wife, my qalbi, meri duniya, meri rooh - you are my bachhi, my jaan, my sukoon, my beautiful paglet. 
               This website is a small token of the infinite love I carry for you in my heart. 
               You make every moment magical, every day brighter, and every dream worth pursuing."
             </p>
