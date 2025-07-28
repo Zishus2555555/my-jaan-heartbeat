@@ -91,11 +91,8 @@ export const PhotoGallery = ({ isOpen, onClose }: PhotoGalleryProps) => {
         </div>
 
         <div className="absolute bottom-16 left-1/2 transform -translate-x-1/2 text-center">
-          <p className="text-deep-rose font-romantic text-lg bg-background/80 px-4 py-2 rounded-lg mb-2">
-            Jaaniye ❤️
-          </p>
-          <p className="text-deep-rose font-romantic text-base bg-background/80 px-4 py-2 rounded-lg">
-            Ankhiyaan teri mere dil pr haal kre song
+          <p className="text-deep-rose font-romantic text-lg bg-background/80 px-4 py-2 rounded-lg">
+            Every moment with you is a treasure, my jaan ❤️
           </p>
         </div>
       </DialogContent>
