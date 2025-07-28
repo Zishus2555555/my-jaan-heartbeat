@@ -8,33 +8,52 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --background: 330 100% 98%;
+    --foreground: 340 30% 25%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 330 50% 96%;
+    --card-foreground: 340 30% 25%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 330 50% 96%;
+    --popover-foreground: 340 30% 25%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 340 80% 60%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 330 40% 85%;
+    --secondary-foreground: 340 50% 30%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 330 30% 90%;
+    --muted-foreground: 340 20% 50%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 15 80% 70%;
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 330 30% 85%;
+    --input: 330 30% 85%;
+    --ring: 340 80% 60%;
+
+    /* Romantic color palette */
+    --rose-gold: 15 65% 75%;
+    --soft-pink: 330 60% 85%;
+    --deep-rose: 340 70% 50%;
+    --warm-white: 330 20% 98%;
+    --love-red: 355 85% 65%;
+
+    /* Gradients */
+    --gradient-romantic: linear-gradient(135deg, hsl(var(--rose-gold)), hsl(var(--love-red)));
+    --gradient-soft: linear-gradient(180deg, hsl(var(--warm-white)), hsl(var(--soft-pink)));
+    --gradient-heart: radial-gradient(circle, hsl(var(--love-red)), hsl(var(--deep-rose)));
+
+    /* Shadows */
+    --shadow-romantic: 0 10px 30px -10px hsl(var(--love-red) / 0.3);
+    --shadow-soft: 0 5px 20px -5px hsl(var(--soft-pink) / 0.4);
+
+    /* Animations */
+    --transition-romantic: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 
     --radius: 0.5rem;
 
@@ -101,5 +120,54 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+  }
+
+  /* Custom romantic animations */
+  @keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+  }
+
+  @keyframes float-heart {
+    0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.7; }
+    50% { transform: translateY(-20px) rotate(180deg); opacity: 1; }
+  }
+
+  @keyframes love-pulse {
+    0%, 100% { box-shadow: 0 0 20px hsl(var(--love-red) / 0.3); }
+    50% { box-shadow: 0 0 40px hsl(var(--love-red) / 0.6); }
+  }
+
+  @keyframes romantic-glow {
+    0%, 100% { text-shadow: 0 0 20px hsl(var(--love-red) / 0.5); }
+    50% { text-shadow: 0 0 30px hsl(var(--love-red) / 0.8); }
+  }
+
+  .heartbeat {
+    animation: heartbeat 1.5s ease-in-out infinite;
+  }
+
+  .float-heart {
+    animation: float-heart 3s ease-in-out infinite;
+  }
+
+  .love-pulse {
+    animation: love-pulse 2s ease-in-out infinite;
+  }
+
+  .romantic-glow {
+    animation: romantic-glow 2s ease-in-out infinite;
+  }
+
+  .romantic-gradient {
+    background: var(--gradient-romantic);
+  }
+
+  .soft-gradient {
+    background: var(--gradient-soft);
+  }
+
+  .heart-gradient {
+    background: var(--gradient-heart);
   }
 }
