@@ -3,7 +3,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/u
 import { Button } from "@/components/ui/button";
 import { HeartIcon } from "@/components/HeartIcon";
 import { MusicPlayer } from "@/components/MusicPlayer";
-import { ChevronLeft, ChevronRight, X } from "lucide-react";
+import { ChevronLeft, ChevronRight, X, ZoomIn, ZoomOut, RotateCcw } from "lucide-react";
 
 const photos = [
   "/lovable-uploads/8b63adbe-edb2-4802-96b1-254f055341dd.png",
@@ -25,13 +25,41 @@ interface PhotoGalleryProps {
 
 export const PhotoGallery = ({ isOpen, onClose }: PhotoGalleryProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [zoomLevel, setZoomLevel] = useState(1);
+  const [isZoomed, setIsZoomed] = useState(false);
 
   const nextPhoto = () => {
     setCurrentIndex((prev) => (prev + 1) % photos.length);
+    resetZoom();
   };
 
   const prevPhoto = () => {
     setCurrentIndex((prev) => (prev - 1 + photos.length) % photos.length);
+    resetZoom();
+  };
+
+  const zoomIn = () => {
+    setZoomLevel(prev => Math.min(prev + 0.5, 3));
+    setIsZoomed(true);
+  };
+
+  const zoomOut = () => {
+    setZoomLevel(prev => Math.max(prev - 0.5, 1));
+    if (zoomLevel <= 1.5) setIsZoomed(false);
+  };
+
+  const resetZoom = () => {
+    setZoomLevel(1);
+    setIsZoomed(false);
+  };
+
+  const toggleZoom = () => {
+    if (isZoomed) {
+      resetZoom();
+    } else {
+      setZoomLevel(2);
+      setIsZoomed(true);
+    }
   };
 
   return (
@@ -59,13 +87,56 @@ export const PhotoGallery = ({ isOpen, onClose }: PhotoGalleryProps) => {
             <X className="h-4 w-4" />
           </Button>
 
-          <div className="relative w-full h-full flex items-center justify-center bg-background">
-            <img
-              src={photos[currentIndex]}
-              alt={`Beautiful memory ${currentIndex + 1}`}
-              className="max-w-full max-h-full object-contain rounded-lg"
-            />
+          <div className="relative w-full h-full flex items-center justify-center bg-background overflow-hidden">
+            {/* Zoom Controls */}
+            <div className="absolute top-4 right-20 z-10 flex gap-2">
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={zoomOut}
+                disabled={zoomLevel <= 1}
+                className="bg-background/80 hover:bg-background"
+              >
+                <ZoomOut className="h-4 w-4" />
+              </Button>
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={resetZoom}
+                disabled={zoomLevel === 1}
+                className="bg-background/80 hover:bg-background"
+              >
+                <RotateCcw className="h-4 w-4" />
+              </Button>
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={zoomIn}
+                disabled={zoomLevel >= 3}
+                className="bg-background/80 hover:bg-background"
+              >
+                <ZoomIn className="h-4 w-4" />
+              </Button>
+            </div>
 
+            {/* Main Image with Zoom */}
+            <div 
+              className="relative overflow-auto max-w-full max-h-full cursor-pointer"
+              onClick={toggleZoom}
+            >
+              <img
+                src={photos[currentIndex]}
+                alt={`Beautiful memory ${currentIndex + 1}`}
+                className="transition-transform duration-300 ease-in-out rounded-lg"
+                style={{
+                  transform: `scale(${zoomLevel})`,
+                  maxWidth: zoomLevel > 1 ? 'none' : '100%',
+                  maxHeight: zoomLevel > 1 ? 'none' : '100%',
+                }}
+              />
+            </div>
+
+            {/* Navigation Arrows */}
             <Button
               variant="ghost"
               size="icon"
@@ -84,16 +155,27 @@ export const PhotoGallery = ({ isOpen, onClose }: PhotoGalleryProps) => {
               <ChevronRight className="h-6 w-6" />
             </Button>
 
-            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2">
+            {/* Photo Navigation Dots */}
+            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2 bg-background/60 px-3 py-2 rounded-full">
               {photos.map((_, index) => (
                 <button
                   key={index}
-                  onClick={() => setCurrentIndex(index)}
+                  onClick={() => {
+                    setCurrentIndex(index);
+                    resetZoom();
+                  }}
                   className={`w-3 h-3 rounded-full transition-all ${
                     index === currentIndex ? "bg-love-red" : "bg-background/50"
                   }`}
                 />
               ))}
+            </div>
+
+            {/* Photo Counter */}
+            <div className="absolute top-4 left-4 z-10 bg-background/80 px-3 py-1 rounded-lg">
+              <span className="text-deep-rose font-romantic text-sm">
+                {currentIndex + 1} / {photos.length}
+              </span>
             </div>
           </div>
 
