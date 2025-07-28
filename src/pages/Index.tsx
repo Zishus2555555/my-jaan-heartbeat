@@ -6,16 +6,13 @@ import { PhotoGallery } from "@/components/PhotoGallery";
 import { PasswordScreen } from "@/components/PasswordScreen";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-
 const Index = () => {
   const [isGalleryOpen, setIsGalleryOpen] = useState(false);
   const [isUnlocked, setIsUnlocked] = useState(false);
-
   if (!isUnlocked) {
     return <PasswordScreen onPasswordCorrect={() => setIsUnlocked(true)} />;
   }
-  return (
-    <div className="min-h-screen soft-gradient relative overflow-hidden">
+  return <div className="min-h-screen soft-gradient relative overflow-hidden">
       <FloatingHearts />
       
       {/* Hero Section */}
@@ -52,19 +49,10 @@ const Index = () => {
           </div>
 
           <Card className="p-8 romantic-gradient text-white mb-8 love-pulse">
-            <p className="text-lg md:text-xl font-elegant leading-relaxed">
-              "To my dearest wife, my qalbi, meri duniya, meri rooh - you are my bachhi, my jaan, my sukoon, my beautiful paglet. 
-              This website is a small token of the infinite love I carry for you in my heart. 
-              You make every moment magical, every day brighter, and every dream worth pursuing."
-            </p>
+            <p className="text-lg md:text-xl font-elegant leading-relaxed">"To my dearest wife, my qalbi, meri duniya, meri rooh - meri bachhi, meri jaan, meri sukoon, my beautiful pagl. This website is a small token of the infinite love I carry for you in my heart. You make every moment magical, every day brighter, and every dream worth pursuing."</p>
           </Card>
 
-          <Button 
-            variant="love" 
-            size="lg" 
-            className="font-elegant text-lg px-8 py-4"
-            onClick={() => setIsGalleryOpen(true)}
-          >
+          <Button variant="love" size="lg" className="font-elegant text-lg px-8 py-4" onClick={() => setIsGalleryOpen(true)}>
             <HeartIcon className="mr-2" animated />
             I Love You, Jaan
           </Button>
@@ -123,12 +111,7 @@ const Index = () => {
         </div>
       </section>
 
-      <PhotoGallery 
-        isOpen={isGalleryOpen} 
-        onClose={() => setIsGalleryOpen(false)} 
-      />
-    </div>
-  );
+      <PhotoGallery isOpen={isGalleryOpen} onClose={() => setIsGalleryOpen(false)} />
+    </div>;
 };
-
 export default Index;
