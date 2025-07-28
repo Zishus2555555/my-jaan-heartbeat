@@ -1,10 +1,13 @@
+import { useState } from "react";
 import { HeartIcon } from "@/components/HeartIcon";
 import { FloatingHearts } from "@/components/FloatingHearts";
 import { LoveQuotes } from "@/components/LoveQuotes";
+import { PhotoGallery } from "@/components/PhotoGallery";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 
 const Index = () => {
+  const [isGalleryOpen, setIsGalleryOpen] = useState(false);
   return (
     <div className="min-h-screen soft-gradient relative overflow-hidden">
       <FloatingHearts />
@@ -39,7 +42,12 @@ const Index = () => {
             </p>
           </Card>
 
-          <Button variant="love" size="lg" className="font-elegant text-lg px-8 py-4">
+          <Button 
+            variant="love" 
+            size="lg" 
+            className="font-elegant text-lg px-8 py-4"
+            onClick={() => setIsGalleryOpen(true)}
+          >
             <HeartIcon className="mr-2" animated />
             I Love You, Jaan
           </Button>
@@ -97,6 +105,11 @@ const Index = () => {
           </p>
         </div>
       </section>
+
+      <PhotoGallery 
+        isOpen={isGalleryOpen} 
+        onClose={() => setIsGalleryOpen(false)} 
+      />
     </div>
   );
 };
