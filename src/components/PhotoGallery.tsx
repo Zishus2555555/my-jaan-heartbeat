@@ -37,7 +37,7 @@ export const PhotoGallery = ({ isOpen, onClose }: PhotoGalleryProps) => {
   return (
     <>
       <MusicPlayer 
-        audioSrc="/path/to/your/song.mp3" // Replace with your audio file path
+        audioSrc="https://drive.google.com/uc?export=download&id=1JJhMH54KWpUABZT5QFTkrYaIaNK0eAiS"
         isVisible={isOpen} 
       />
       
