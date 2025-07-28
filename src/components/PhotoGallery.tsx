@@ -65,7 +65,7 @@ export const PhotoGallery = ({ isOpen, onClose }: PhotoGalleryProps) => {
   return (
     <>
       <MusicPlayer 
-        audioSrc="" // Temporarily disabled - Google Drive has CORS issues
+        audioSrc="https://onedrive.live.com/download?cid=854bca5659c4ac9d&resid=854BCA5659C4AC9D%21116&authkey=AF-56sPvbb_9qg392CliGCPQ"
         isVisible={isOpen} 
       />
       
