@@ -20,26 +20,44 @@ export const MusicPlayer = ({ audioSrc, isVisible }: MusicPlayerProps) => {
 
     const updateTime = () => setCurrentTime(audio.currentTime);
     const updateDuration = () => setDuration(audio.duration);
+    const handleError = (e: Event) => {
+      console.error('Audio loading error:', e);
+      console.log('Audio src:', audio.src);
+    };
+    const handleCanPlay = () => {
+      console.log('Audio can play, duration:', audio.duration);
+    };
 
     audio.addEventListener('timeupdate', updateTime);
     audio.addEventListener('loadedmetadata', updateDuration);
+    audio.addEventListener('error', handleError);
+    audio.addEventListener('canplaythrough', handleCanPlay);
 
     return () => {
       audio.removeEventListener('timeupdate', updateTime);
       audio.removeEventListener('loadedmetadata', updateDuration);
+      audio.removeEventListener('error', handleError);
+      audio.removeEventListener('canplaythrough', handleCanPlay);
     };
   }, [audioSrc]);
 
-  const togglePlay = () => {
+  const togglePlay = async () => {
     const audio = audioRef.current;
     if (!audio) return;
 
-    if (isPlaying) {
-      audio.pause();
-    } else {
-      audio.play();
+    try {
+      if (isPlaying) {
+        audio.pause();
+        setIsPlaying(false);
+      } else {
+        console.log('Attempting to play audio...');
+        await audio.play();
+        setIsPlaying(true);
+      }
+    } catch (error) {
+      console.error('Error playing audio:', error);
+      setIsPlaying(false);
     }
-    setIsPlaying(!isPlaying);
   };
 
   const formatTime = (time: number) => {
