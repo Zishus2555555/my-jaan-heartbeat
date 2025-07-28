@@ -20,7 +20,7 @@ export const PasswordScreen = ({ onPasswordCorrect }: PasswordScreenProps) => {
     setIsLoading(true);
     
     setTimeout(() => {
-      if (password === "28022008") {
+      if (password === "22082022") {
         toast({
           title: "Welcome my beautiful jaan! ❤️",
           description: "Your love has unlocked our special world",
