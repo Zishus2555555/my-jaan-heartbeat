@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { HeartIcon } from "@/components/HeartIcon";
+import { MusicPlayer } from "@/components/MusicPlayer";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 
 const photos = [
@@ -34,68 +35,75 @@ export const PhotoGallery = ({ isOpen, onClose }: PhotoGalleryProps) => {
   };
 
   return (
-    <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-4xl w-full h-[80vh] p-0 bg-background border-none">
-        <DialogHeader className="absolute top-4 left-4 z-10">
-          <DialogTitle className="text-deep-rose font-romantic text-2xl flex items-center gap-2">
-            <HeartIcon className="text-love-red" animated />
-            Our Beautiful Memories, Jaan
-          </DialogTitle>
-        </DialogHeader>
-        
-        <Button
-          variant="ghost"
-          size="icon"
-          onClick={onClose}
-          className="absolute top-4 right-4 z-10 bg-background/80 hover:bg-background"
-        >
-          <X className="h-4 w-4" />
-        </Button>
-
-        <div className="relative w-full h-full flex items-center justify-center bg-background">
-          <img
-            src={photos[currentIndex]}
-            alt={`Beautiful memory ${currentIndex + 1}`}
-            className="max-w-full max-h-full object-contain rounded-lg"
-          />
-
+    <>
+      <MusicPlayer 
+        audioSrc="/path/to/your/song.mp3" // Replace with your audio file path
+        isVisible={isOpen} 
+      />
+      
+      <Dialog open={isOpen} onOpenChange={onClose}>
+        <DialogContent className="max-w-4xl w-full h-[80vh] p-0 bg-background border-none">
+          <DialogHeader className="absolute top-4 left-4 z-10">
+            <DialogTitle className="text-deep-rose font-romantic text-2xl flex items-center gap-2">
+              <HeartIcon className="text-love-red" animated />
+              Our Beautiful Memories, Jaan
+            </DialogTitle>
+          </DialogHeader>
+          
           <Button
             variant="ghost"
             size="icon"
-            onClick={prevPhoto}
-            className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-background/80 hover:bg-background z-10"
+            onClick={onClose}
+            className="absolute top-4 right-4 z-10 bg-background/80 hover:bg-background"
           >
-            <ChevronLeft className="h-6 w-6" />
+            <X className="h-4 w-4" />
           </Button>
 
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={nextPhoto}
-            className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-background/80 hover:bg-background z-10"
-          >
-            <ChevronRight className="h-6 w-6" />
-          </Button>
+          <div className="relative w-full h-full flex items-center justify-center bg-background">
+            <img
+              src={photos[currentIndex]}
+              alt={`Beautiful memory ${currentIndex + 1}`}
+              className="max-w-full max-h-full object-contain rounded-lg"
+            />
 
-          <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2">
-            {photos.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setCurrentIndex(index)}
-                className={`w-3 h-3 rounded-full transition-all ${
-                  index === currentIndex ? "bg-love-red" : "bg-background/50"
-                }`}
-              />
-            ))}
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={prevPhoto}
+              className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-background/80 hover:bg-background z-10"
+            >
+              <ChevronLeft className="h-6 w-6" />
+            </Button>
+
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={nextPhoto}
+              className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-background/80 hover:bg-background z-10"
+            >
+              <ChevronRight className="h-6 w-6" />
+            </Button>
+
+            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2">
+              {photos.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentIndex(index)}
+                  className={`w-3 h-3 rounded-full transition-all ${
+                    index === currentIndex ? "bg-love-red" : "bg-background/50"
+                  }`}
+                />
+              ))}
+            </div>
           </div>
-        </div>
 
-        <div className="absolute bottom-16 left-1/2 transform -translate-x-1/2 text-center">
-          <p className="text-deep-rose font-romantic text-lg bg-background/80 px-4 py-2 rounded-lg">
-            Every moment with you is a treasure, my jaan ❤️
-          </p>
-        </div>
-      </DialogContent>
-    </Dialog>
+          <div className="absolute bottom-16 left-1/2 transform -translate-x-1/2 text-center">
+            <p className="text-deep-rose font-romantic text-lg bg-background/80 px-4 py-2 rounded-lg">
+              Every moment with you is a treasure, my jaan ❤️
+            </p>
+          </div>
+        </DialogContent>
+      </Dialog>
+    </>
   );
 };
