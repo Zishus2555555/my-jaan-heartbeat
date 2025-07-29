@@ -15,7 +15,7 @@ const Index = () => {
   }
   return <div className="min-h-screen soft-gradient relative overflow-hidden">
       <MusicPlayer 
-        audioSrc="https://drive.google.com/uc?export=download&id=1JJhMH54KWpUABZT5QFTkrYaIaNK0eAiS"
+        audioSrc="/music/touch-of-love.mp3"
         isVisible={true} 
       />
       <FloatingHearts />
