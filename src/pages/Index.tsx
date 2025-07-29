@@ -4,6 +4,7 @@ import { FloatingHearts } from "@/components/FloatingHearts";
 import { LoveQuotes } from "@/components/LoveQuotes";
 import { PhotoGallery } from "@/components/PhotoGallery";
 import { PasswordScreen } from "@/components/PasswordScreen";
+import { MusicPlayer } from "@/components/MusicPlayer";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 const Index = () => {
@@ -13,6 +14,10 @@ const Index = () => {
     return <PasswordScreen onPasswordCorrect={() => setIsUnlocked(true)} />;
   }
   return <div className="min-h-screen soft-gradient relative overflow-hidden">
+      <MusicPlayer 
+        audioSrc="https://drive.google.com/uc?export=download&id=1JJhMH54KWpUABZT5QFTkrYaIaNK0eAiS"
+        isVisible={true} 
+      />
       <FloatingHearts />
       
       {/* Hero Section */}

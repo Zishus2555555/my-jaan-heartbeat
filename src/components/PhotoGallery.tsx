@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { HeartIcon } from "@/components/HeartIcon";
-import { MusicPlayer } from "@/components/MusicPlayer";
 import { ChevronLeft, ChevronRight, X, ZoomIn, ZoomOut, RotateCcw } from "lucide-react";
 
 const photos = [
@@ -63,39 +62,26 @@ export const PhotoGallery = ({ isOpen, onClose }: PhotoGalleryProps) => {
   };
 
   return (
-    <>
-      <MusicPlayer 
-        audioSrc="https://drive.google.com/uc?export=download&id=1JJhMH54KWpUABZT5QFTkrYaIaNK0eAiS"
-        isVisible={isOpen} 
-      />
-      
-      <Dialog open={isOpen} onOpenChange={onClose}>
-        <DialogContent className="max-w-4xl w-full h-[80vh] p-0 bg-background border-none">
-          <DialogHeader className="absolute top-4 left-4 z-10">
-            <DialogTitle className="text-deep-rose font-romantic text-2xl flex items-center gap-2">
-              <HeartIcon className="text-love-red" animated />
-              Our Beautiful Memories, Jaan
-            </DialogTitle>
-          </DialogHeader>
-          
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={onClose}
-            className="absolute top-4 right-4 z-10 bg-background/80 hover:bg-background"
-          >
-            <X className="h-4 w-4" />
-          </Button>
+    <Dialog open={isOpen} onOpenChange={onClose}>
+      <DialogContent className="max-w-4xl w-full h-[80vh] p-0 bg-background border-none">
+        <DialogHeader className="absolute top-4 left-4 z-10">
+          <DialogTitle className="text-deep-rose font-romantic text-2xl flex items-center gap-2">
+            <HeartIcon className="text-love-red" animated />
+            Our Beautiful Memories, Jaan
+          </DialogTitle>
+        </DialogHeader>
+        
+        <Button
+          variant="ghost"
+          size="icon"
+          onClick={onClose}
+          className="absolute top-4 right-4 z-10 bg-background/80 hover:bg-background"
+        >
+          <X className="h-4 w-4" />
+        </Button>
 
-          <div className="relative w-full h-full flex items-center justify-center bg-background overflow-hidden">
-            {/* Music Control Indicator */}
-            <div className="absolute top-20 left-4 z-10 bg-love-red/90 backdrop-blur-sm px-3 py-2 rounded-full shadow-lg animate-pulse">
-              <div className="flex items-center gap-2 text-white">
-                <div className="w-2 h-2 bg-white rounded-full animate-ping"></div>
-                <span className="text-xs font-romantic">Music Playing</span>
-              </div>
-            </div>
-            {/* Zoom Controls */}
+        <div className="relative w-full h-full flex items-center justify-center bg-background overflow-hidden">
+          {/* Zoom Controls */}
             <div className="absolute top-4 right-20 z-10 flex gap-2">
               <Button
                 variant="ghost"
@@ -193,6 +179,5 @@ export const PhotoGallery = ({ isOpen, onClose }: PhotoGalleryProps) => {
           </div>
         </DialogContent>
       </Dialog>
-    </>
   );
 };
