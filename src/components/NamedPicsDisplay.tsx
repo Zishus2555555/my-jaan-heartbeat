@@ -15,9 +15,7 @@ export const NamedPicsDisplay = ({
         <div className="text-center max-w-4xl mx-auto">
           <div className="mb-8">
             <HeartIcon className="text-6xl text-love-red heartbeat mx-auto mb-6" animated />
-            <h1 className="text-4xl md:text-6xl font-romantic text-deep-rose mb-6 romantic-glow">
-              इन सब की प्यारी बच्ची ❤️
-            </h1>
+            
             <p className="text-xl font-elegant text-foreground mb-8">
               You belong to all of us, my beautiful jaan
             </p>
