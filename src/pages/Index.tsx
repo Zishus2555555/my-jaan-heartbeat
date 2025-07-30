@@ -4,14 +4,28 @@ import { FloatingHearts } from "@/components/FloatingHearts";
 import { LoveQuotes } from "@/components/LoveQuotes";
 import { PhotoGallery } from "@/components/PhotoGallery";
 import { PasswordScreen } from "@/components/PasswordScreen";
+import { LoadingScreen } from "@/components/LoadingScreen";
+import { EmojiBar } from "@/components/EmojiBar";
 import { MusicPlayer } from "@/components/MusicPlayer";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 const Index = () => {
   const [isGalleryOpen, setIsGalleryOpen] = useState(false);
   const [isUnlocked, setIsUnlocked] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isKissTriggered, setIsKissTriggered] = useState(false);
+
   if (!isUnlocked) {
-    return <PasswordScreen onPasswordCorrect={() => setIsUnlocked(true)} />;
+    return <PasswordScreen onPasswordCorrect={() => {
+      setIsLoading(true);
+    }} />;
+  }
+
+  if (isLoading) {
+    return <LoadingScreen 
+      onComplete={() => setIsLoading(false)} 
+      isKissTriggered={isKissTriggered}
+    />;
   }
   return <div className="min-h-screen soft-gradient relative overflow-hidden">
       <MusicPlayer 
@@ -117,6 +131,11 @@ const Index = () => {
       </section>
 
       <PhotoGallery isOpen={isGalleryOpen} onClose={() => setIsGalleryOpen(false)} />
+      
+      <EmojiBar onKissEmoji={() => {
+        setIsKissTriggered(true);
+        setIsLoading(true);
+      }} />
     </div>;
 };
 export default Index;
