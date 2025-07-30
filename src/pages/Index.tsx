@@ -17,6 +17,7 @@ const Index = () => {
 
   if (!isUnlocked) {
     return <PasswordScreen onPasswordCorrect={() => {
+      setIsUnlocked(true);
       setIsLoading(true);
     }} />;
   }
