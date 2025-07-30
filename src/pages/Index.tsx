@@ -13,6 +13,7 @@ const Index = () => {
   const [isGalleryOpen, setIsGalleryOpen] = useState(false);
   const [isUnlocked, setIsUnlocked] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [showEmojiPanel, setShowEmojiPanel] = useState(false);
   const [isKissTriggered, setIsKissTriggered] = useState(false);
 
   if (!isUnlocked) {
@@ -24,9 +25,37 @@ const Index = () => {
 
   if (isLoading) {
     return <LoadingScreen 
-      onComplete={() => setIsLoading(false)} 
+      onComplete={() => {
+        setIsLoading(false);
+        setShowEmojiPanel(true);
+      }} 
       isKissTriggered={isKissTriggered}
     />;
+  }
+
+  if (showEmojiPanel) {
+    return (
+      <div className="min-h-screen soft-gradient relative overflow-hidden flex items-center justify-center">
+        <FloatingHearts />
+        
+        <div className="relative z-10 w-full max-w-md px-6 text-center">
+          <div className="mb-8">
+            <HeartIcon className="text-8xl mx-auto mb-6 heartbeat" animated />
+            <h2 className="text-3xl font-romantic text-deep-rose mb-4">
+              Send me your love, jaan ❤️
+            </h2>
+            <p className="text-lg font-elegant text-muted-foreground mb-8">
+              Choose an emoji to express your feelings
+            </p>
+          </div>
+          
+          <EmojiBar onKissEmoji={() => {
+            setIsKissTriggered(true);
+            setShowEmojiPanel(false);
+          }} />
+        </div>
+      </div>
+    );
   }
   return <div className="min-h-screen soft-gradient relative overflow-hidden">
       <MusicPlayer 
@@ -132,11 +161,6 @@ const Index = () => {
       </section>
 
       <PhotoGallery isOpen={isGalleryOpen} onClose={() => setIsGalleryOpen(false)} />
-      
-      <EmojiBar onKissEmoji={() => {
-        setIsKissTriggered(true);
-        setIsLoading(true);
-      }} />
     </div>;
 };
 export default Index;
