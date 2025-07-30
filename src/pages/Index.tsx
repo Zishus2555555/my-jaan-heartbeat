@@ -64,7 +64,7 @@ const Index = () => {
 
   if (showLoveQuestion) {
     return <LoveQuestion onOptionSelect={(option) => {
-      if (option === "in-sb-ki") {
+      if (option === "apne-pumpkin-ki") {
         setShowNamedPics(true);
       } else {
         setIsGalleryOpen(true);

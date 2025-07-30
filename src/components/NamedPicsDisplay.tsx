@@ -16,9 +16,11 @@ export const NamedPicsDisplay = ({
           <div className="mb-8">
             <HeartIcon className="text-6xl text-love-red heartbeat mx-auto mb-6" animated />
             
-            <p className="text-xl font-elegant text-foreground mb-8">
-              You belong to all of us, my beautiful jaan
-            </p>
+            <div className="text-xl font-elegant text-foreground mb-8 flex items-center justify-center gap-2">
+              <HeartIcon className="text-2xl text-love-red" animated />
+              <span>I LOVE YOU FOREVER AND EVER AND EVER</span>
+              <HeartIcon className="text-2xl text-love-red" animated />
+            </div>
           </div>
 
           <div className="grid md:grid-cols-2 gap-8 mb-12">
