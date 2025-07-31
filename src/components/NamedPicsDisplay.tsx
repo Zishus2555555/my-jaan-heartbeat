@@ -1,5 +1,6 @@
 import { HeartIcon } from "@/components/HeartIcon";
 import { FloatingHearts } from "@/components/FloatingHearts";
+import { MusicPlayer } from "@/components/MusicPlayer";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 interface NamedPicsDisplayProps {
@@ -8,7 +9,13 @@ interface NamedPicsDisplayProps {
 export const NamedPicsDisplay = ({
   onContinue
 }: NamedPicsDisplayProps) => {
-  return <div className="min-h-screen soft-gradient relative overflow-hidden">
+  return (
+    <div className="min-h-screen soft-gradient relative overflow-hidden">
+      <MusicPlayer 
+        audioSrc="/music/new.jpg.mp3"
+        isVisible={true}
+        autoPlay={true}
+      />
       <FloatingHearts />
       
       <div className="relative z-10 min-h-screen flex items-center justify-center px-4">
@@ -71,5 +78,6 @@ export const NamedPicsDisplay = ({
           </Button>
         </div>
       </div>
-    </div>;
+    </div>
+  );
 };
