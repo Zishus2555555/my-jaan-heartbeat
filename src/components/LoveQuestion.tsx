@@ -31,7 +31,8 @@ export const LoveQuestion = ({ onOptionSelect }: LoveQuestionProps) => {
     <div className="min-h-screen soft-gradient relative overflow-hidden flex items-center justify-center">
       <MusicPlayer 
         audioSrc="/music/new.jpg.mp3"
-        isVisible={true} 
+        isVisible={true}
+        autoPlay={true}
       />
       <FloatingHearts />
       

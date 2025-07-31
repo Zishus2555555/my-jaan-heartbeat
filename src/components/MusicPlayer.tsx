@@ -6,9 +6,10 @@ import { HeartIcon } from "@/components/HeartIcon";
 interface MusicPlayerProps {
   audioSrc?: string;
   isVisible: boolean;
+  autoPlay?: boolean;
 }
 
-export const MusicPlayer = ({ audioSrc, isVisible }: MusicPlayerProps) => {
+export const MusicPlayer = ({ audioSrc, isVisible, autoPlay = false }: MusicPlayerProps) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
@@ -40,6 +41,27 @@ export const MusicPlayer = ({ audioSrc, isVisible }: MusicPlayerProps) => {
       audio.removeEventListener('canplaythrough', handleCanPlay);
     };
   }, [audioSrc]);
+
+  // Auto-play effect
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (!audio || !audioSrc || !autoPlay) return;
+
+    const handleCanPlay = async () => {
+      try {
+        await audio.play();
+        setIsPlaying(true);
+      } catch (error) {
+        console.error('Auto-play failed:', error);
+      }
+    };
+
+    audio.addEventListener('canplaythrough', handleCanPlay);
+
+    return () => {
+      audio.removeEventListener('canplaythrough', handleCanPlay);
+    };
+  }, [audioSrc, autoPlay]);
 
   const togglePlay = async () => {
     const audio = audioRef.current;
