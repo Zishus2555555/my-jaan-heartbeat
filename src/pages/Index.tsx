@@ -148,7 +148,7 @@ const Index = () => {
               <div className="space-y-2">
                 <div className="text-4xl mx-auto mb-2">∞</div>
                 <h4 className="font-elegant text-lg">My Love</h4>
-                <p className="text-sm opacity-90">Is infinite, meri jaan</p>
+                <p className="text-sm opacity-90">"You are my today and all of my tomorrows, meri jaan"</p>
               </div>
             </div>
           </Card>
