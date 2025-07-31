@@ -62,7 +62,7 @@ export const NamedPicsDisplay = ({
           </div>
 
           <Card className="p-6 soft-gradient text-foreground mb-8">
-            <p className="text-lg font-elegant leading-relaxed">"You are my little princess, but most importantly, you are mine forever, my jaan ❤️"</p>
+            <p className="text-lg font-elegant leading-relaxed">"You are my little princess, but most importantly, you are mine forever, meri jaan ❤️"</p>
           </Card>
 
           <Button variant="love" size="lg" className="font-elegant text-lg px-8 py-4" onClick={onContinue}>
