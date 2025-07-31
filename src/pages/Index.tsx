@@ -19,27 +19,20 @@ const Index = () => {
   const [isKissTriggered, setIsKissTriggered] = useState(false);
   const [showLoveQuestion, setShowLoveQuestion] = useState(false);
   const [showNamedPics, setShowNamedPics] = useState(false);
-
   if (!isUnlocked) {
     return <PasswordScreen onPasswordCorrect={() => {
       setIsUnlocked(true);
       setIsLoading(true);
     }} />;
   }
-
   if (isLoading) {
-    return <LoadingScreen 
-      onComplete={() => {
-        setIsLoading(false);
-        setShowEmojiPanel(true);
-      }} 
-      isKissTriggered={isKissTriggered}
-    />;
+    return <LoadingScreen onComplete={() => {
+      setIsLoading(false);
+      setShowEmojiPanel(true);
+    }} isKissTriggered={isKissTriggered} />;
   }
-
   if (showEmojiPanel) {
-    return (
-      <div className="min-h-screen soft-gradient relative overflow-hidden flex items-center justify-center">
+    return <div className="min-h-screen soft-gradient relative overflow-hidden flex items-center justify-center">
         <FloatingHearts />
         
         <div className="relative z-10 w-full max-w-md px-6 text-center">
@@ -54,16 +47,14 @@ const Index = () => {
           </div>
           
           <EmojiBar onKissEmoji={() => {
-            setIsKissTriggered(true);
-            setShowEmojiPanel(false);
-          }} />
+          setIsKissTriggered(true);
+          setShowEmojiPanel(false);
+        }} />
         </div>
-      </div>
-    );
+      </div>;
   }
-
   if (showLoveQuestion) {
-    return <LoveQuestion onOptionSelect={(option) => {
+    return <LoveQuestion onOptionSelect={option => {
       if (option === "apne-pumpkin-ki") {
         setShowNamedPics(true);
       } else {
@@ -72,7 +63,6 @@ const Index = () => {
       setShowLoveQuestion(false);
     }} />;
   }
-
   if (showNamedPics) {
     return <NamedPicsDisplay onContinue={() => {
       setShowNamedPics(false);
@@ -157,8 +147,8 @@ const Index = () => {
               </div>
               <div className="space-y-2">
                 <div className="text-4xl mx-auto mb-2">∞</div>
-                <h4 className="font-elegant text-lg">My Love</h4>
-                <p className="text-sm opacity-90">Is infinite, my jaan</p>
+                <h4 className="font-elegant text-lg">My Love</h4>
+                <p className="text-sm opacity-90">Is infinite, meri jaan</p>
               </div>
             </div>
           </Card>
