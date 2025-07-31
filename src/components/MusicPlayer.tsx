@@ -47,6 +47,9 @@ export const MusicPlayer = ({ audioSrc, isVisible, autoPlay = false }: MusicPlay
     const audio = audioRef.current;
     if (!audio || !audioSrc || !autoPlay) return;
 
+    // Set volume to mid level (50%)
+    audio.volume = 0.5;
+
     const handleCanPlay = async () => {
       try {
         await audio.play();
