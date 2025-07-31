@@ -16,7 +16,7 @@ export const LoveQuestion = ({ onOptionSelect }: LoveQuestionProps) => {
   const options = [
     { value: "zishu-ahmad-ki", label: "zishu ahmad की" },
     { value: "mahiuddin-ki", label: "mahiuddin की" },
-    { value: "apne-bnr-ki", label: "अपने bnr की" },
+    { value: "apne-bndr-ki", label: "अपने bndr की" },
     { value: "apne-pumpkin-ki", label: "अपने pumpkin की" }
   ];
 
