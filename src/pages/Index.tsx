@@ -80,11 +80,6 @@ const Index = () => {
     }} />;
   }
   return <div className="min-h-screen soft-gradient relative overflow-hidden">
-      <MusicPlayer 
-        audioSrc="/music/new.jpg.mp3"
-        isVisible={true}
-        autoPlay={true}
-      />
       <FloatingHearts />
       
       {/* Hero Section */}
