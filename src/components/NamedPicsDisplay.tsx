@@ -9,13 +9,8 @@ interface NamedPicsDisplayProps {
 export const NamedPicsDisplay = ({
   onContinue
 }: NamedPicsDisplayProps) => {
-  return (
-    <div className="min-h-screen soft-gradient relative overflow-hidden">
-      <MusicPlayer 
-        audioSrc="/music/new.jpg.mp3"
-        isVisible={true}
-        autoPlay={true}
-      />
+  return <div className="min-h-screen soft-gradient relative overflow-hidden">
+      <MusicPlayer audioSrc="/music/new.jpg.mp3" isVisible={true} autoPlay={true} />
       <FloatingHearts />
       
       <div className="relative z-10 min-h-screen flex items-center justify-center px-4">
@@ -67,9 +62,7 @@ export const NamedPicsDisplay = ({
           </div>
 
           <Card className="p-6 soft-gradient text-foreground mb-8">
-            <p className="text-lg font-elegant leading-relaxed">
-              "You are everyone's little princess, but most importantly, you are mine forever, my jaan ❤️"
-            </p>
+            <p className="text-lg font-elegant leading-relaxed">"You are my little princess, but most importantly, you are mine forever, my jaan ❤️"</p>
           </Card>
 
           <Button variant="love" size="lg" className="font-elegant text-lg px-8 py-4" onClick={onContinue}>
@@ -78,6 +71,5 @@ export const NamedPicsDisplay = ({
           </Button>
         </div>
       </div>
-    </div>
-  );
+    </div>;
 };
