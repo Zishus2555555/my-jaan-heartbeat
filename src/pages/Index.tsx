@@ -21,6 +21,16 @@ const Index = () => {
   const [showLoveQuestion, setShowLoveQuestion] = useState(false);
   const [showNamedPics, setShowNamedPics] = useState(false);
   const [showMarriageProposal, setShowMarriageProposal] = useState(false);
+  
+  console.log("Index component state:", {
+    isUnlocked,
+    isLoading,
+    showEmojiPanel,
+    showLoveQuestion,
+    showNamedPics,
+    showMarriageProposal,
+    isGalleryOpen
+  });
   if (!isUnlocked) {
     return <PasswordScreen onPasswordCorrect={() => {
       setIsUnlocked(true);
@@ -66,14 +76,18 @@ const Index = () => {
     }} />;
   }
   if (showNamedPics) {
+    console.log("Showing NamedPicsDisplay");
     return <NamedPicsDisplay onContinue={() => {
+      console.log("NamedPics onContinue clicked - setting marriage proposal");
       setShowNamedPics(false);
       setShowMarriageProposal(true);
     }} />;
   }
   
   if (showMarriageProposal) {
+    console.log("Showing MarriageProposal");
     return <MarriageProposal onAccept={() => {
+      console.log("Marriage proposal accepted");
       setShowMarriageProposal(false);
       setIsGalleryOpen(true);
     }} />;
