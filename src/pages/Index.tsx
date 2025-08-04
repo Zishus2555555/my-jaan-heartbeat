@@ -9,6 +9,7 @@ import { EmojiBar } from "@/components/EmojiBar";
 import { MusicPlayer } from "@/components/MusicPlayer";
 import { LoveQuestion } from "@/components/LoveQuestion";
 import { NamedPicsDisplay } from "@/components/NamedPicsDisplay";
+import { MarriageProposal } from "@/components/MarriageProposal";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 const Index = () => {
@@ -19,6 +20,7 @@ const Index = () => {
   const [isKissTriggered, setIsKissTriggered] = useState(false);
   const [showLoveQuestion, setShowLoveQuestion] = useState(false);
   const [showNamedPics, setShowNamedPics] = useState(false);
+  const [showMarriageProposal, setShowMarriageProposal] = useState(false);
   if (!isUnlocked) {
     return <PasswordScreen onPasswordCorrect={() => {
       setIsUnlocked(true);
@@ -66,6 +68,13 @@ const Index = () => {
   if (showNamedPics) {
     return <NamedPicsDisplay onContinue={() => {
       setShowNamedPics(false);
+      setShowMarriageProposal(true);
+    }} />;
+  }
+  
+  if (showMarriageProposal) {
+    return <MarriageProposal onAccept={() => {
+      setShowMarriageProposal(false);
       setIsGalleryOpen(true);
     }} />;
   }
