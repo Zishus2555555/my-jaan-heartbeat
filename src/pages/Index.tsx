@@ -95,24 +95,76 @@ const Index = () => {
   return <div className="min-h-screen soft-gradient relative overflow-hidden">
       <FloatingHearts />
       
+      {/* Magical Background Effects */}
+      <div className="fixed inset-0 pointer-events-none">
+        {[...Array(25)].map((_, i) => (
+          <div
+            key={`magic-bg-${i}`}
+            className="absolute opacity-20 animate-pulse"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              animationDelay: `${i * 0.3}s`,
+              animationDuration: `${2 + Math.random() * 3}s`,
+            }}
+          >
+            {i % 4 === 0 ? '✨' : i % 4 === 1 ? '💫' : i % 4 === 2 ? '🌟' : '💖'}
+          </div>
+        ))}
+      </div>
+      
+      {/* Rose Petals Effect */}
+      <div className="fixed inset-0 pointer-events-none">
+        {[...Array(8)].map((_, i) => (
+          <div
+            key={`petal-${i}`}
+            className="absolute text-rose-400 opacity-40 animate-bounce"
+            style={{
+              left: `${15 + i * 12}%`,
+              top: `${10 + Math.random() * 80}%`,
+              animationDelay: `${i * 0.8}s`,
+              animationDuration: `${3 + Math.random() * 2}s`,
+            }}
+          >
+            🌹
+          </div>
+        ))}
+      </div>
+      
       {/* Hero Section */}
       <section className="relative z-10 min-h-screen flex items-center justify-center px-4">
         <div className="text-center max-w-4xl mx-auto">
-          <div className="mb-8">
+          <div className="mb-8 relative">
             <HeartIcon className="text-6xl text-love-red heartbeat mx-auto mb-6" animated />
-            <h1 className="text-5xl md:text-7xl font-romantic text-deep-rose mb-4 romantic-glow">
+            {/* Hero Heart Ring */}
+            <div className="absolute inset-0 animate-ping">
+              <HeartIcon className="text-6xl text-love-red opacity-30 mx-auto" />
+            </div>
+            <h1 className="text-5xl md:text-7xl font-romantic text-deep-rose mb-4 romantic-glow relative">
               My Beautiful Jaan
+              <div className="absolute -top-2 left-1/2 transform -translate-x-1/2 text-yellow-300 animate-bounce">
+                ✨
+              </div>
             </h1>
             <p className="text-xl md:text-2xl font-elegant text-foreground mb-6 leading-relaxed">
               Every heartbeat whispers your name, every breath carries my love for you
             </p>
             <div className="flex flex-wrap justify-center gap-4 mb-8">
               <HeartIcon className="text-2xl text-love-red" animated />
-              <span className="font-romantic text-lg text-deep-rose">My Qalbi</span>
+              <span className="font-romantic text-lg text-deep-rose relative">
+                My Qalbi
+                <div className="absolute -top-1 -right-1 text-yellow-300 text-xs animate-pulse">💫</div>
+              </span>
               <HeartIcon className="text-2xl text-love-red" animated />
-              <span className="font-romantic text-lg text-deep-rose">Meri Duniya</span>
+              <span className="font-romantic text-lg text-deep-rose relative">
+                Meri Duniya
+                <div className="absolute -top-1 -right-1 text-yellow-300 text-xs animate-pulse">💫</div>
+              </span>
               <HeartIcon className="text-2xl text-love-red" animated />
-              <span className="font-romantic text-lg text-deep-rose">Meri Rooh</span>
+              <span className="font-romantic text-lg text-deep-rose relative">
+                Meri Rooh
+                <div className="absolute -top-1 -right-1 text-yellow-300 text-xs animate-pulse">💫</div>
+              </span>
               <HeartIcon className="text-2xl text-love-red" animated />
             </div>
             <div className="flex flex-wrap justify-center gap-4 mb-8">
@@ -128,13 +180,20 @@ const Index = () => {
             </div>
           </div>
 
-          <Card className="p-8 romantic-gradient text-white mb-8 love-pulse">
+          <Card className="p-8 romantic-gradient text-white mb-8 love-pulse relative overflow-hidden">
+            <div className="absolute top-2 left-2 text-yellow-300 animate-bounce">💫</div>
+            <div className="absolute top-2 right-2 text-yellow-300 animate-bounce" style={{animationDelay: "0.5s"}}>💫</div>
+            <div className="absolute bottom-2 left-2 text-rose-400 animate-pulse">🌹</div>
+            <div className="absolute bottom-2 right-2 text-rose-400 animate-pulse" style={{animationDelay: "0.3s"}}>🌹</div>
             <p className="text-lg md:text-xl font-elegant leading-relaxed">"To my dearest wife, my qalbi, meri duniya, meri rooh - meri bachhi, meri jaan, meri sukoon, my beautiful pagl. This website is a small token of the infinite love I carry for you in my heart. You make every moment magical, every day brighter, and every dream worth pursuing."</p>
           </Card>
 
-          <Button variant="love" size="lg" className="font-elegant text-lg px-8 py-4" onClick={() => setShowLoveQuestion(true)}>
+          <Button variant="love" size="lg" className="font-elegant text-lg px-8 py-4 relative overflow-hidden" onClick={() => setShowLoveQuestion(true)}>
             <HeartIcon className="mr-2" animated />
             I Love You, Jaan
+            <div className="absolute top-1 right-2 text-yellow-300 animate-bounce">
+              ✨
+            </div>
           </Button>
         </div>
       </section>
